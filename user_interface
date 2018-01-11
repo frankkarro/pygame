@@ -1,22 +1,29 @@
 from tkinter import *
 
 class Window(Frame):
-    def __init__(self, master=None):
+    def __init__(self, master):
         Frame.__init__(self, master)
         self.master = master
         self.init_window()
 
     def init_window(self):
         self.master.title("pygame gui v1.0")
-        self.pack(fill=BOTH, expand=1)
+        self.pack(fill=BOTH, expand=YES)
 
-        quitButton = Button(self, text="QUIT GAME", command=self.client_exit)
+
+        outCanvas = Frame(self)
+        outCanvas.pack()
+
+        insCanvas = Canvas(outCanvas, bg="tan", borderwidth=1, relief=RIDGE,)
+        insCanvas.pack()
+
+        quitButton = Button(self, text="QUIT GAME", width=10, command=self.client_exit)
         quitButton.place(x=5, y=450)
 
-        startButton = Button(self, text="START GAME")
+        startButton = Button(self, text="START GAME", width=10)
         startButton.place(x=5, y=5)
 
-        testAnimation = Button(self, text="TEST ANIMATION")
+        testAnimation = Button(self, text="TEST", width=10)
         testAnimation.place(x=5, y= 225)
 
     def client_exit(self):
@@ -26,6 +33,7 @@ class Window(Frame):
 
 root = Tk()
 root.geometry("800x480")
+root.resizable(width=False, height=False)
 
 app = Window(root)
 
